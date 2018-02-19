@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Root } from 'native-base';
+import { Provider } from 'react-redux';
 import { isSignedIn } from './app/auth';
+import AppContainer from './app/containers/AppContainer';
 import { createRootNavigator } from './app/navigation/router';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import store from './app/redux/store';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     signedIn: false,
-    checkedSignIn: false
+    checkedSignIn: false,
+    showToast: false
   }
 
   componentWillMount() {
@@ -23,17 +20,17 @@ export default class App extends Component {
 
   render() {
     const { checkedSignIn, signedIn } = this.state;
-
-    if (!checkedSignIn) {
-      return null;
-    }
+    if (!checkedSignIn) return null
 
     const NavigationLayout = createRootNavigator(signedIn);
-
     return (
-      <Root>
-        <NavigationLayout />
-      </Root>
+        <Provider store={store}>
+          <AppContainer>
+            <NavigationLayout />
+          </AppContainer>
+        </Provider>
     );
   }
 }
+
+export default App;

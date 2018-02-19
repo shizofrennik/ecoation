@@ -1,9 +1,11 @@
+import React, { Component } from 'react';
 import { StackNavigator, TabNavigator } from "react-navigation";
+import { Icon } from 'native-base';
 
 import SignUp from "../components/auth/SignUp";
-import SignIn from "../components/auth/SignIn";
-import Home from "../components/home/Home";
-import Profile from "../components/home/Profile";
+import SignInContainer from "../containers/AuthContainer";
+import Profile from "../containers/ProfileContainer";
+import GreenHouse from "../containers/GreenHouseContainer";
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(
@@ -30,14 +32,15 @@ export const createRootNavigator = (signedIn = false) => {
 };
 
 export const SignedOut = StackNavigator({
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      title: "Sign Up"
-    }
-  },
+  // cap for future registration
+  // SignUp: {
+  //   screen: SignUp,
+  //   navigationOptions: {
+  //     title: "Sign Up"
+  //   }
+  // },
   SignIn: {
-    screen: SignIn,
+    screen: SignInContainer,
     navigationOptions: {
       title: "Sign In"
     }
@@ -45,22 +48,22 @@ export const SignedOut = StackNavigator({
 });
 
 export const SignedIn = TabNavigator({
-  Home: {
-    screen: Home,
+  GreenHouse: {
+    screen: GreenHouse,
     navigationOptions: {
-      tabBarLabel: "Home",
-      // tabBarIcon: ({ tintColor }) => (
-      //   <FontAwesome name="home" size={30} color={tintColor} />
-      // )
+      tabBarLabel: "Greenhouse",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="md-home" size={30} color={tintColor} />
+      )
     }
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: "Profile",
-      // tabBarIcon: ({ tintColor }) => (
-      //   <FontAwesome name="user" size={30} color={tintColor} />
-      // )
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="md-person" size={30} color={tintColor} />
+      )
     }
   }
 });

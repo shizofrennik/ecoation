@@ -7,10 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "amazon-cognito-identity-js": "^2.0.0",
+    "aws-sdk": "^2.196.0",
+    "aws4-react-native": "^0.0.2",
+    "buffer": "^5.0.8",
     "native-base": "^2.3.8",
     "react": "16.2.0",
     "react-native": "0.53.0",
-    "react-native-storage": "^0.2.2",
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
